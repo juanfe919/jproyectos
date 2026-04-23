@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crema de Cera de Abeja — BeeSkin Glow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ---- PRODUCT PAGE STYLES ---- */
+
+    .product-page {
+      padding-top: 72px;
+      background: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ============ SLIDER ============ */
+    .slider-section {
+      background: var(--cream);
+      padding: 52px 0 0;
+    }
+
+    .slider-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: linear-gradient(135deg, #f0e0b8, #dcc070);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.52s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* The actual product image */
+    .slide img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Placeholder tile shown when image is missing */
+    .slide-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .slide-ph-1 { background: linear-gradient(135deg,#f5e6c8,#e8c878); }
+    .slide-ph-2 { background: linear-gradient(135deg,#f0d890,#d4a017); }
+    .slide-ph-3 { background: linear(135deg,#e8d4a0,#c8a84b); background: linear-gradient(135deg,#e8d4a0,#c8a84b); }
+    .slide-ph-4 { background: linear-gradient(135deg,#d4c090,#9a7d30); }
+
+    .slide-ph span { font-size: 60px; }
+    .slide-ph p {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--charcoal);
+      opacity: 0.6;
+      letter-spacing: 2px;
+    }
+
+    /* Arrows */
+    .slider-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px;
+      background: rgba(253,250,244,0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      font-size: 17px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition);
+      color: var(--charcoal);
+    }
+    .slider-btn:hover { background: var(--gold); color: var(--cream-soft); }
+    .slider-btn.prev { left: 12px; }
+    .slider-btn.next { right: 12px; }
+
+    /* Dots */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(26,16,8,0.18);
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+    .dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* Thumbnail strip */
+    .slider-thumbs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .thumb {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color var(--transition), transform var(--transition);
+      background: linear-gradient(135deg,#e8d090,#c8a04a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .thumb.active { border-color: var(--gold); transform: scale(1.06); }
+
+    /* ============ PRODUCT INFO ============ */
+    .product-info-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 44px 24px 0;
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .product-name em { color: var(--gold-dark); font-style: italic; }
+
+    /* BUY BUTTON — above description */
+    .btn-buy {
+      display: block;
+      width: 100%;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--charcoal);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(200,168,75,0.32);
+      margin-bottom: 36px;
+    }
+    .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(200,168,75,0.46);
+    }
+    .btn-buy:active { transform: translateY(0); }
+
+    .product-description {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(26,16,8,0.68);
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .product-description p { margin-bottom: 16px; }
+    .product-description p:last-child { margin-bottom: 0; }
+
+    /* ============ REVIEWS ============ */
+    .reviews-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 52px 24px 80px;
+    }
+
+    .reviews-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+
+    .review-form-block {
+      margin-top: 32px;
+      padding: 32px;
+      background: rgba(234,224,206,0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(10px);
+    }
+
+    .review-form-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--charcoal);
+      margin-bottom: 22px;
+    }
+
+    .form-row {
+      margin-bottom: 18px;
+    }
+    .form-row label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 7px;
+    }
+    .form-row input,
+    .form-row textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(253,250,244,0.85);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--charcoal);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      resize: vertical;
+    }
+    .form-row input:focus,
+    .form-row textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,168,75,0.14);
+    }
+
+    /* Star rating */
+    .star-row { display: flex; gap: 5px; }
+    .star {
+      font-size: 26px;
+      color: rgba(26,16,8,0.15);
+      cursor: pointer;
+      transition: color var(--transition), transform var(--transition);
+      line-height: 1;
+    }
+    .star.on, .star.hover { color: var(--gold); }
+    .star:hover { transform: scale(1.15); }
+
+    .btn-review {
+      margin-top: 6px;
+      padding: 13px 30px;
+      background: var(--charcoal);
+      color: var(--gold-light);
+      border: none;
+      border-radius: 60px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-review:hover { background: var(--gold); color: var(--charcoal); transform: translateY(-2px); }
+
+    /* Reviews list */
+    .reviews-list {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Empty state */
+    .reviews-empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: rgba(26,16,8,0.35);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .reviews-empty .empty-icon { font-size: 40px; margin-bottom: 12px; display: block; opacity: 0.5; }
+
+    /* Review card */
+    .review-card {
+      padding: 22px 24px;
+      background: rgba(234,224,206,0.5);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      animation: slideInUp 0.45s var(--ease) forwards;
+    }
+    @keyframes slideInUp {
+      from { opacity:0; transform:translateY(16px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .review-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .review-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--amber));
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .review-card-header strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .review-card-stars { font-size: 13px; color: var(--gold); margin-top: 1px; }
+    .review-card p {
+      font-size: 14px;
+      color: rgba(26,16,8,0.62);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* PAYMENT DIALOG */
+    dialog {
+      border: none;
+      outline: none;
+      border-radius: var(--radius-lg);
+      padding: 0;
+      max-width: 440px;
+      width: 92%;
+      box-shadow: 0 24px 72px rgba(0,0,0,0.28);
+    }
+    dialog::backdrop {
+      background: rgba(13,8,4,0.65);
+      backdrop-filter: blur(6px);
+    }
+    .dialog-body {
+      padding: 44px 36px;
+      background: var(--cream-soft);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .pay-anim {
+      position: relative;
+      width: 72px; height: 72px;
+      margin: 0 auto 22px;
+    }
+    .pay-spinner {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 3px solid rgba(200,168,75,0.18);
+      border-top-color: var(--gold);
+      animation: spin 0.75s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .pay-bee {
+      position: absolute; top:50%; left:50%;
+      transform: translate(-50%,-50%);
+      font-size: 26px;
+      animation: pulse 0.9s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform:translate(-50%,-50%) scale(1); }
+      50%      { transform:translate(-50%,-50%) scale(1.15); }
+    }
+    .dialog-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+    .dialog-body p {
+      font-size: 14px;
+      color: rgba(26,16,8,0.55);
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+    .progress-wrap {
+      height: 4px;
+      background: rgba(200,168,75,0.14);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.04s linear;
+    }
+    .pay-success { display: none; }
+    .success-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      color: var(--charcoal);
+      animation: popIn 0.45s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+    }
+    @keyframes popIn {
+      from { transform:scale(0); opacity:0; }
+      to   { transform:scale(1); opacity:1; }
+    }
+    .btn-close-pay {
+      margin-top: 16px;
+      padding: 11px 28px;
+      background: var(--charcoal);
+      color: var(--gold-light);
+      border: none;
+      border-radius: 60px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      transition: var(--transition);
+    }
+    .btn-close-pay:hover { background: var(--gold); color: var(--charcoal); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 480px) {
+      .slider-wrap { padding: 0 12px; }
+      .product-info-section { padding: 36px 16px 0; }
+      .reviews-section { padding: 44px 16px 60px; }
+      .review-form-block { padding: 24px 18px; }
+      .thumb { width: 52px; height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLYING BEE -->
+  <div class="bee-container" id="bee" style="transform:translate(200px,200px)">
+    <svg class="bee-svg" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="18" cy="12" rx="14" ry="7" fill="rgba(255,255,255,0.55)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="18" cy="26" rx="11" ry="5.5" fill="rgba(255,255,255,0.42)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="36" cy="20" rx="16" ry="9" fill="#1a1008"/>
+      <rect x="28" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <rect x="35" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <circle cx="51" cy="20" r="7" fill="#1a1008"/>
+      <circle cx="53" cy="18" r="1.8" fill="#d4a017"/>
+      <path d="M20 20 L14 20" stroke="#1a1008" stroke-width="2" stroke-linecap="round"/>
+      <path d="M49 14 Q52 8 56 6" stroke="#1a1008" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <circle cx="56" cy="6" r="1.5" fill="#d4a017"/>
+    </svg>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="logo.png" alt="BeeSkin Glow"
+             onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='block'"/>
+        <div class="logo-fallback" id="logo-fb" style="display:none">
+          <em>Bee</em>Skin Glow<span>GLOW</span>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Inicio</a>
+      <a href="producto.html">Producto</a>
+      <a href="sobre-nosotros.html">Sobre Nosotros</a>
+      <a href="valores.html">Valores</a>
+        <a href="equipo.html">Equipo</a>
+          <a href="dofa.html">DOFA</a>
+            <a href="costos.html">Costos</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="terminos.html">Términos</a>
+    
+    </nav>
+  </header>
+
+  <div class="product-page">
+
+    <!-- IMAGE SLIDER -->
+    <section class="slider-section">
+      <div class="slider-wrap">
+
+        <div class="slider" id="slider">
+          <div class="slider-track" id="slider-track">
+
+            <div class="slide">
+              <div class="slide-ph slide-ph-1" id="ph-1">
+                <span>🐝</span><p>imagen</p>
+              </div>
+              <img src="imagen1.png" alt="Crema BeeSkin Glow – vista 1"
+                   onload="document.getElementById('ph-1').style.display='none'"
+                   onerror="this.style.display='none'"/>
+            </div>
+
+            <div class="slide">
+              <div class="slide-ph slide-ph-2" id="ph-2">
+                <span>🍯</span><p>producto2.jpg</p>
+              </div>
+              <img src="imagen2.png" alt="Crema BeeSkin Glow – vista 2"
+                   onload="document.getElementById('ph-2').style.display='none'"
+                   onerror="this.style.display='none'"/>
+            </div>
+
+            <div class="slide">
+              <div class="slide-ph slide-ph-3" id="ph-3">
+                <span>✨</span><p>producto3.jpg</p>
+              </div>
+              <img src="imagen3.png" alt="Crema BeeSkin Glow – vista 3"
+                   onload="document.getElementById('ph-3').style.display='none'"
+                   onerror="this.style.display='none'"/>
+            </div>
+
+            <div class="slide">
+              <div class="slide-ph slide-ph-4" id="ph-4">
+                <span>🌿</span><p>producto4.jpg</p>
+              </div>
+              <img src="imagen4.png" alt="Crema BeeSkin Glow – vista 4"
+                   onload="document.getElementById('ph-4').style.display='none'"
+                   onerror="this.style.display='none'"/>
+            </div>
+
+          </div>
+          <button class="slider-btn prev" id="sl-prev" aria-label="Anterior">&#8592;</button>
+          <button class="slider-btn next" id="sl-next" aria-label="Siguiente">&#8594;</button>
+        </div>
+
+        <!-- Dots -->
+        <div class="slider-dots" id="slider-dots">
+          <button class="dot active" data-i="0" aria-label="Imagen 1"></button>
+          <button class="dot" data-i="1" aria-label="Imagen 2"></button>
+          <button class="dot" data-i="2" aria-label="Imagen 3"></button>
+          <button class="dot" data-i="3" aria-label="Imagen 4"></button>
+        </div>
+
+
+
+      </div>
+    </section>
+
+    <!-- PRODUCT INFO: title → buy button → description -->
+    <section class="product-info-section reveal">
+
+      <h1 class="product-name">
+        Crema Sólida<br><em>de Cera de Abeja</em>
+      </h1>
+      <p class="product-price">
+      $ 29.800 </p>
+      <button class="btn-buy" id="btn-buy">Comprar Ahora</button>
+
+      <div class="product-description">
+        <p>La crema a base de cera de abeja es un producto cosmético diseñado para el cuidado de la piel. Su ingrediente principal, la cera de abeja, aporta propiedades hidratantes, suavizantes y protectoras que ayudan a mantener la piel en buen estado. Esta crema contribuye a nutrir la piel, mejorar su textura y brindarle una sensación de suavidad y bienestar.</p>
+        <img src="aplicacion.gif" alt="Demostración de la textura de la crema BeeSkin Glow" class="producto-gif">
+        <p>Se trata de una crema sólida elaborada con cera de abeja, pensada para el cuidado de diferentes zonas como el rostro, el contorno de ojos, los labios y las manos, lo que la convierte en un producto todo en uno. Su formato sólido la hace práctica, fácil de usar y de llevar, siendo una alternativa cómoda para el cuidado diario de la piel, especialmente para personas que buscan productos más naturales y versátiles.</p>
+      </div>
+
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews-section">
+
+      <h2 class="reviews-title reveal">Reseñas</h2>
+      <div class="gold-line reveal" style="transition-delay:0.1s"></div>
+
+      <div class="review-form-block reveal" style="transition-delay:0.15s">
+        <h3>Escribe tu Reseña</h3>
+
+        <div class="form-row">
+          <label for="rev-name">Nombre</label>
+          <input type="text" id="rev-name" placeholder="Tu nombre" maxlength="60" autocomplete="name"/>
+        </div>
+
+        <div class="form-row">
+          <label>Calificación</label>
+          <div class="star-row" id="star-row" role="group" aria-label="Calificación">
+            <span class="star" data-v="1" role="button" tabindex="0" aria-label="1 estrella">★</span>
+            <span class="star" data-v="2" role="button" tabindex="0" aria-label="2 estrellas">★</span>
+            <span class="star" data-v="3" role="button" tabindex="0" aria-label="3 estrellas">★</span>
+            <span class="star" data-v="4" role="button" tabindex="0" aria-label="4 estrellas">★</span>
+            <span class="star" data-v="5" role="button" tabindex="0" aria-label="5 estrellas">★</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="rev-text">Comentario</label>
+          <textarea id="rev-text" placeholder="Cuéntanos tu experiencia con el producto..." rows="4" maxlength="400"></textarea>
+        </div>
+
+        <button class="btn-review" id="btn-review">Publicar Reseña</button>
+      </div>
+
+      <!-- List (empty until user submits) -->
+      <div class="reviews-list" id="reviews-list">
+        <div class="reviews-empty" id="reviews-empty">
+          <span class="empty-icon">🐝</span>
+          Sé el primero en dejar una reseña.
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /product-page -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand-logo">
+          <img src="logo.png" alt="BeeSkin Glow"
+               onerror="this.style.display='none'; document.getElementById('footer-fb').style.display='block'"/>
+          <div class="logo-fallback" id="footer-fb" style="display:none; font-size:1.4rem">
+            <em>Bee</em>Skin<span style="font-size:0.5rem;letter-spacing:5px;color:var(--gold)">GLOW</span>
+          </div>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="valores.html">Valores Corporativos</a>
+        <a href="equipo.html">Equipo</a>
+        <a href="dofa.html">DOFA</a>
+        <a href="costos.html">Costos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacidad.html">Política de Privacidad</a>
+        <a href="terminos.html">Términos y Condiciones</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:hola@beeskinglow.com">hola@beeskinglow.com</a>
+        <a href="tel:+573000000000">+57 300 000 0000</a>
+        <span>Colombia 🇨🇴</span>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 BeeSkin Glow. Todos los derechos reservados.</div>
+  </footer>
+
+  <!-- PAYMENT DIALOG -->
+  <dialog id="pay-dialog">
+    <div class="dialog-body">
+      <div class="pay-anim" id="pay-anim">
+        <div class="pay-spinner"></div>
+        <div class="pay-bee">🐝</div>
+      </div>
+      <h3 id="pay-title">Procesando Pago...</h3>
+      <p id="pay-msg">Por favor espera mientras procesamos tu pedido de forma segura.</p>
+      <div class="progress-wrap"><div class="progress-fill" id="pay-progress"></div></div>
+      <div class="pay-success" id="pay-success">
+        <div class="success-icon">✓</div>
+        <p style="font-size:15px;font-weight:600;color:var(--charcoal);margin-bottom:4px">¡Compra exitosa!</p>
+        <p style="font-size:13px;color:rgba(26,16,8,0.5);margin-bottom:0">Recibirás un correo de confirmación.</p>
+      </div>
+      <button class="btn-close-pay" id="btn-close-pay">Cerrar</button>
+    </div>
+  </dialog>
+
+  <script src="shared.js"></script>
+  <script>
+    /* ---- SLIDER ---- */
+    (function() {
+      const track  = document.getElementById('slider-track');
+      const dots   = document.querySelectorAll('#slider-dots .dot');
+      const thumbs = document.querySelectorAll('#slider-thumbs .thumb');
+      const total  = 4;
+      let cur = 0, timer;
+
+      function go(i) {
+        cur = (i + total) % total;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        dots.forEach((d,j)  => d.classList.toggle('active', j === cur));
+        thumbs.forEach((t,j) => t.classList.toggle('active', j === cur));
+      }
+
+      document.getElementById('sl-prev').addEventListener('click', () => { clearInterval(timer); go(cur-1); startAuto(); });
+      document.getElementById('sl-next').addEventListener('click', () => { clearInterval(timer); go(cur+1); startAuto(); });
+
+      dots.forEach(d   => d.addEventListener('click',   () => { clearInterval(timer); go(+d.dataset.i);    startAuto(); }));
+      thumbs.forEach(t => t.addEventListener('click',   () => { clearInterval(timer); go(+t.dataset.i);    startAuto(); }));
+
+      // Touch
+      let sx = 0;
+      track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend',   e => {
+        const dx = sx - e.changedTouches[0].clientX;
+        if (Math.abs(dx) > 38) { clearInterval(timer); go(dx > 0 ? cur+1 : cur-1); startAuto(); }
+      }, { passive: true });
+
+      function startAuto() { timer = setInterval(() => go(cur+1), 4500); }
+      startAuto();
+    })();
+
+    /* ---- STAR RATING ---- */
+    let rating = 0;
+    const stars = document.querySelectorAll('#star-row .star');
+
+    stars.forEach(s => {
+      s.addEventListener('mouseenter', () => {
+        const v = +s.dataset.v;
+        stars.forEach((x,i) => x.classList.toggle('hover', i < v));
+      });
+      s.addEventListener('mouseleave', () => {
+        stars.forEach((x,i) => { x.classList.remove('hover'); x.classList.toggle('on', i < rating); });
+      });
+      s.addEventListener('click', () => {
+        rating = +s.dataset.v;
+        stars.forEach((x,i) => x.classList.toggle('on', i < rating));
+      });
+      s.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); s.click(); }
+      });
+    });
+
+    /* ---- REVIEWS ---- */
+    document.getElementById('btn-review').addEventListener('click', () => {
+      const name = document.getElementById('rev-name').value.trim();
+      const text = document.getElementById('rev-text').value.trim();
+
+      if (!name) { shake('rev-name'); toast('Ingresa tu nombre'); return; }
+      if (!text) { shake('rev-text'); toast('Escribe tu comentario'); return; }
+      if (!rating) { toast('Selecciona una calificación'); return; }
+
+      const stars = '★'.repeat(rating) + '☆'.repeat(5-rating);
+      const card = document.createElement('div');
+      card.className = 'review-card';
+      card.innerHTML = `
+        <div class="review-card-header">
+          <div class="review-avatar">${esc(name).charAt(0).toUpperCase()}</div>
+          <div>
+            <strong>${esc(name)}</strong>
+            <div class="review-card-stars">${stars}</div>
+          </div>
+        </div>
+        <p>"${esc(text)}"</p>
+      `;
+
+      const list  = document.getElementById('reviews-list');
+      const empty = document.getElementById('reviews-empty');
+      if (empty) empty.remove();
+      list.insertBefore(card, list.firstChild);
+
+      document.getElementById('rev-name').value = '';
+      document.getElementById('rev-text').value = '';
+      rating = 0;
+      stars && stars.forEach && stars.forEach(x => x.classList.remove('on'));
+      document.querySelectorAll('#star-row .star').forEach(x => x.classList.remove('on'));
+
+      toast('¡Reseña publicada! 🐝', true);
+    });
+
+    /* ---- PAYMENT ---- */
+    document.getElementById('btn-buy').addEventListener('click', openPay);
+
+    function openPay() {
+      const d = document.getElementById('pay-dialog');
+      const progress = document.getElementById('pay-progress');
+      const title    = document.getElementById('pay-title');
+      const msg      = document.getElementById('pay-msg');
+      const success  = document.getElementById('pay-success');
+      const closeBtn = document.getElementById('btn-close-pay');
+      const anim     = document.getElementById('pay-anim');
+
+      title.textContent     = 'Procesando Pago...';
+      msg.textContent       = 'Por favor espera mientras procesamos tu pedido de forma segura.';
+      progress.style.width  = '0%';
+      success.style.display = 'none';
+      closeBtn.style.display = 'none';
+      anim.style.display     = '';
+      msg.style.display      = '';
+
+      d.showModal();
+
+      let pct = 0;
+      const iv = setInterval(() => {
+        pct += Math.random() * 9 + 2;
+        if (pct >= 100) { pct = 100; clearInterval(iv); onSuccess(); }
+        progress.style.width = pct + '%';
+      }, 75);
+    }
+
+    function onSuccess() {
+      setTimeout(() => {
+        document.getElementById('pay-title').textContent = '¡Pago Exitoso! 🐝';
+        document.getElementById('pay-msg').style.display = 'none';
+        document.getElementById('pay-anim').style.display = 'none';
+        document.getElementById('pay-success').style.display = 'block';
+        document.getElementById('btn-close-pay').style.display = 'inline-block';
+      }, 200);
+    }
+
+    document.getElementById('btn-close-pay').addEventListener('click', () => {
+      document.getElementById('pay-dialog').close();
+    });
+
+    /* ---- HELPERS ---- */
+    function esc(s) {
+      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+    }
+
+    function shake(id) {
+      const el = document.getElementById(id);
+      el.style.animation = 'none'; el.offsetHeight;
+      el.style.animation = 'shk 0.38s ease';
+      setTimeout(() => { el.style.animation = ''; }, 400);
+    }
+
+    function toast(msg, ok) {
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.style.cssText = `
+        position:fixed; bottom:28px; left:50%;
+        transform:translateX(-50%) translateY(12px);
+        background:${ok ? 'linear-gradient(135deg,#2ecc71,#27ae60)' : 'linear-gradient(135deg,#C8A84B,#9A7D30)'};
+        color:${ok ? '#fff' : '#1a1008'};
+        padding:12px 26px; border-radius:60px;
+        font-family:'Montserrat',sans-serif; font-size:13px; font-weight:600;
+        z-index:99999; opacity:0; pointer-events:none;
+        transition:opacity 0.28s ease,transform 0.28s ease;
+        box-shadow:0 6px 20px rgba(0,0,0,0.18);
+      `;
+      document.body.appendChild(t);
+      requestAnimationFrame(() => { t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)'; });
+      setTimeout(() => {
+        t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(8px)';
+        setTimeout(() => t.remove(), 300);
+      }, 3000);
+    }
+
+    // Shake keyframes
+    const ss = document.createElement('style');
+    ss.textContent = `@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}`;
+    document.head.appendChild(ss);
+  </script>
+</body>
+</html>
