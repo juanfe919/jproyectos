@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipo BeeSkin — BeeSkin Glow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── PAGE INTRO ── */
+    .page-intro { max-width: 860px; margin: 0 auto; padding: 64px 28px 0; }
+    .page-intro h1 { font-family: var(--font-display); font-size: clamp(2.2rem,5vw,3.4rem); color: var(--charcoal); line-height:1.1; }
+    .page-intro p  { font-size:15px; color:rgba(26,16,8,0.62); line-height:1.8; margin-top:16px; max-width:620px; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      max-width: 860px; margin: 56px auto 0; padding: 0 28px;
+    }
+    .section-label h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem,3.5vw,2.2rem);
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+
+    /* ── PROFILE CARDS GRID ── */
+    .profiles-grid {
+      max-width: 860px; margin: 32px auto 0; padding: 0 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .profile-card {
+      background: rgba(234,224,206,0.55);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 26px 22px 24px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    }
+    .profile-card:hover { transform:translateY(-4px); box-shadow: var(--shadow-gold); }
+
+    .profile-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 11px;
+      background: rgba(200,168,75,0.13);
+      border: 1px solid rgba(200,168,75,0.3);
+      border-radius: 60px;
+      font-size: 11px; font-weight: 600; color: var(--amber);
+      letter-spacing: .5px;
+      margin-bottom: 14px;
+    }
+
+    .profile-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; color: var(--charcoal); margin-bottom: 14px; line-height:1.2;
+    }
+
+    .profile-row {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: rgba(26,16,8,0.62);
+      margin-bottom: 7px; line-height: 1.5;
+    }
+    .profile-row .pr-label {
+      font-weight: 600; color: var(--amber); min-width: 88px; flex-shrink:0;
+      font-size: 11px; text-transform: uppercase; letter-spacing: .5px; padding-top:1px;
+    }
+
+    .profile-divider {
+      height: 1px; background: var(--glass-border); margin: 14px 0;
+    }
+
+    .profile-funcs {
+      font-size: 13px; color: rgba(26,16,8,0.6); line-height: 1.65;
+    }
+    .profile-funcs strong {
+      display: block; font-size:11px; text-transform:uppercase; letter-spacing:.5px;
+      color: var(--amber); font-weight:600; margin-bottom:5px;
+    }
+
+    /* ── ORGANIGRAMA ── */
+    .org-section {
+      max-width: 860px; margin: 56px auto 0; padding: 0 28px 80px;
+    }
+    .org-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem,3.5vw,2.2rem);
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+
+    .org-frame {
+      margin-top: 28px;
+      background: rgba(234,224,206,0.45);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    /* Visual organigrama built in HTML/CSS */
+    .org-chart {
+      padding: 40px 24px 48px;
+      overflow-x: auto;
+    }
+
+    .org-level { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; }
+    .org-level + .org-level { margin-top: 32px; }
+
+    .org-box {
+      background: linear-gradient(135deg, rgba(200,168,75,0.18), rgba(200,168,75,0.06));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      text-align: center;
+      min-width: 130px; max-width: 160px;
+      position: relative;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .org-box:hover { box-shadow: var(--shadow-gold); transform: translateY(-2px); }
+    .org-box.top {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-color: var(--gold-dark);
+    }
+    .org-box.top .ob-title { color: var(--charcoal); }
+    .org-box.top .ob-name  { color: rgba(26,16,8,0.75); }
+
+    .ob-title { font-size: 11px; font-weight: 700; color: var(--amber); letter-spacing:.5px; text-transform:uppercase; margin-bottom:4px; }
+    .ob-name  { font-family: var(--font-display); font-size: 1rem; color: var(--charcoal); font-weight:600; line-height:1.2; }
+
+    /* Connector lines via CSS */
+    .org-connector {
+      display: flex; justify-content: center;
+      margin: 0;
+    }
+    .org-connector::before {
+      content: '';
+      display: block;
+      width: 1px; height: 28px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    .org-h-line {
+      position: relative;
+      display: flex; justify-content: center; align-items: flex-start;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .org-h-line::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+      opacity: 0.35;
+    }
+
+    .org-note {
+      text-align: center;
+      font-size: 12px; color: rgba(26,16,8,0.35);
+      margin-top: 28px;
+      font-style: italic;
+    }
+
+    /* Placeholder image area */
+    .org-img-placeholder {
+      width: 100%;
+      min-height: 260px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+      background: linear-gradient(135deg, #f2e8d5, #e8d4a8);
+      color: rgba(26,16,8,0.3);
+      font-size: 13px; letter-spacing:2px; text-transform: uppercase;
+    }
+    .org-img-placeholder span { font-size: 48px; opacity:.4; }
+
+    /* Reemplaza la imagen cuando la cargues */
+    .org-real-img {
+      width: 100%;
+      display: none; /* Cambia a block cuando pongas organigrama.png */
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .profiles-grid { grid-template-columns: 1fr; }
+      .org-box { min-width: 100px; max-width: 130px; padding: 10px 10px; }
+      .ob-name { font-size: .85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bee-container" id="bee" style="transform:translate(200px,200px)">
+    <svg class="bee-svg" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="18" cy="12" rx="14" ry="7" fill="rgba(255,255,255,0.55)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="18" cy="26" rx="11" ry="5.5" fill="rgba(255,255,255,0.42)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="36" cy="20" rx="16" ry="9" fill="#1a1008"/>
+      <rect x="28" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <rect x="35" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <circle cx="51" cy="20" r="7" fill="#1a1008"/>
+      <circle cx="53" cy="18" r="1.8" fill="#d4a017"/>
+      <path d="M20 20 L14 20" stroke="#1a1008" stroke-width="2" stroke-linecap="round"/>
+      <path d="M49 14 Q52 8 56 6" stroke="#1a1008" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <circle cx="56" cy="6" r="1.5" fill="#d4a017"/>
+    </svg>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="logo.png" alt="BeeSkin Glow" onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='block'"/>
+        <div class="logo-fallback" id="logo-fb" style="display:none"><em>Bee</em>Skin Glow<span>GLOW</span></div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Inicio</a>
+      <a href="producto.html">Producto</a>
+      <a href="sobre-nosotros.html">Sobre Nosotros</a>
+      <a href="valores.html">Valores</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="dofa.html">DOFA</a>
+      <a href="costos.html">Costos</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="terminos.html">Términos</a>
+    </nav>
+  </header>
+
+  <div class="inner-page">
+
+    <!-- INTRO -->
+    <div class="page-intro">
+      <h1 class="reveal">Equipo <em style="color:var(--gold-dark);font-style:italic">BeeSkin</em></h1>
+      <div class="gold-line reveal" style="transition-delay:.08s"></div>
+      <p class="reveal" style="transition-delay:.12s">Conoce a nuestro equipo.</p>
+    </div>
+
+    <!-- PERFILES -->
+    <div class="section-label reveal" style="transition-delay:.16s">
+      <h2>Perfil de Cargos</h2>
+    </div>
+
+    <div class="profiles-grid">
+
+      <!-- Directora General -->
+      <div class="profile-card reveal" style="transition-delay:.10s">
+        <div class="profile-badge">🐝 Dirección</div>
+        <h3>Directora General</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Administración de Empresas</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>2 años</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>21 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Controlar registros contables, preparar estados financieros, realizar conciliaciones bancarias y coordinar actividades administrativas de la empresa.</div>
+      </div>
+
+      <!-- Directora de Producción -->
+      <div class="profile-card reveal" style="transition-delay:.14s">
+        <div class="profile-badge">⚗️ Producción</div>
+        <h3>Directora de Producción</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Ingeniería Química</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>2 años</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>22 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Planificar y supervisar la elaboración de productos, controlar el uso de materias primas y asegurar el cumplimiento de estándares de calidad.</div>
+      </div>
+
+      <!-- Directora Comercial -->
+      <div class="profile-card reveal" style="transition-delay:.18s">
+        <div class="profile-badge">📈 Comercial</div>
+        <h3>Directora Comercial</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Mercadeo y Negocios Internacionales</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>1 año</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>20 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Diseñar estrategias de ventas, promover los productos, analizar el mercado y fortalecer la relación con los clientes.</div>
+      </div>
+
+      <!-- Encargado de Compras -->
+      <div class="profile-card reveal" style="transition-delay:.22s">
+        <div class="profile-badge">📦 Logística</div>
+        <h3>Encargado de Compras</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Logística</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>2 años</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>25 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Gestionar proveedores, comprar materias primas e insumos y controlar pedidos para asegurar el abastecimiento.</div>
+      </div>
+
+      <!-- Operario de Producción -->
+      <div class="profile-card reveal" style="transition-delay:.26s">
+        <div class="profile-badge">🔬 Producción</div>
+        <h3>Operario de Producción</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Química</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>2 años</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>24 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Preparar formulaciones, manejar equipos de producción y seguir protocolos para la elaboración segura de productos.</div>
+      </div>
+
+      <!-- Auxiliar de Producción -->
+      <div class="profile-card reveal" style="transition-delay:.30s">
+        <div class="profile-badge">🧴 Producción</div>
+        <h3>Auxiliar de Producción</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Tecnología Química</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>1 año</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>21 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Apoyar la preparación de materiales, envasado y etiquetado, y mantener organizada el área de producción.</div>
+      </div>
+
+      <!-- Técnico de Control de Calidad -->
+      <div class="profile-card reveal" style="transition-delay:.34s">
+        <div class="profile-badge">✅ Calidad</div>
+        <h3>Técnico de Control de Calidad</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Tecnología en Control de Calidad</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>2 años</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>23 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Verificar calidad de materias primas y productos, realizar pruebas de control y registrar resultados.</div>
+      </div>
+
+      <!-- Community Manager -->
+      <div class="profile-card reveal" style="transition-delay:.38s">
+        <div class="profile-badge">📱 Marketing</div>
+        <h3>Community Manager</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Marketing Digital</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>1 año</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>22 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Crear contenido, administrar redes sociales e interactuar con seguidores para fortalecer la marca.</div>
+      </div>
+
+      <!-- Asesor de Ventas -->
+      <div class="profile-card reveal" style="transition-delay:.42s">
+        <div class="profile-badge">🤝 Ventas</div>
+        <h3>Asesor de Ventas</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Mercadeo</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>1 año</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>23 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Promocionar productos, asesorar clientes y gestionar pedidos para cumplir metas de ventas.</div>
+      </div>
+
+      <!-- Contador -->
+      <div class="profile-card reveal" style="transition-delay:.46s">
+        <div class="profile-badge">🧾 Finanzas</div>
+        <h3>Contador</h3>
+        <div class="profile-row"><span class="pr-label">Estudios</span><span>Contaduría Pública</span></div>
+        <div class="profile-row"><span class="pr-label">Experiencia</span><span>5 años</span></div>
+        <div class="profile-row"><span class="pr-label">Edad</span><span>35 años</span></div>
+        <div class="profile-divider"></div>
+        <div class="profile-funcs"><strong>Funciones</strong>Llevar control contable, revisar movimientos financieros y elaborar informes económicos.</div>
+      </div>
+
+    </div><!-- /profiles-grid -->
+
+    <!-- ORGANIGRAMA -->
+    <div class="org-section">
+      <h2 class="reveal">Organigrama</h2>
+      <div class="gold-line reveal" style="transition-delay:.06s"></div>
+
+      <div class="org-frame reveal" style="transition-delay:.12s">
+
+        <!-- Imagen real: cuando tengas el archivo, pon organigrama.png en la carpeta
+             y cambia display:none a display:block en el <img> de abajo.
+             Cuando la imagen esté visible, el bloque .org-chart se oculta. -->
+        <img src="organigrama1.png" alt="Organigrama BeeSkin Glow"
+             class="org-real-img" id="org-img"
+             onload="this.style.display='block'; document.getElementById('org-built').style.display='none'"
+             onerror="this.style.display='block   '"/>
+
+        <!-- Organigrama HTML/CSS como placeholder visual -->
+        <div class="org-chart" id="org-built">
+
+          <!-- Nivel 1: Directora General -->
+          <div class="org-level">
+            <div class="org-box top">
+              <div class="ob-title">Dirección</div>
+              <div class="ob-name">Directora General</div>
+            </div>
+          </div>
+
+          <div class="org-connector"></div>
+
+          <!-- Nivel 2: Tres direcciones -->
+          <div class="org-level org-h-line">
+            <div class="org-box">
+              <div class="ob-title">Producción</div>
+              <div class="ob-name">Directora de Producción</div>
+            </div>
+            <div class="org-box">
+              <div class="ob-title">Comercial</div>
+              <div class="ob-name">Directora Comercial</div>
+            </div>
+            <div class="org-box">
+              <div class="ob-title">Finanzas</div>
+              <div class="ob-name">Contador</div>
+            </div>
+          </div>
+
+          <div class="org-connector"></div>
+
+          <!-- Nivel 3: Operativos -->
+          <div class="org-level org-h-line">
+            <div class="org-box">
+              <div class="ob-title">Compras</div>
+              <div class="ob-name">Encargado de Compras</div>
+            </div>
+            <div class="org-box">
+              <div class="ob-title">Producción</div>
+              <div class="ob-name">Operario de Producción</div>
+            </div>
+            <div class="org-box">
+              <div class="ob-title">Producción</div>
+              <div class="ob-name">Auxiliar de Producción</div>
+            </div>
+            <div class="org-box">
+              <div class="ob-title">Calidad</div>
+              <div class="ob-name">Técnico de Calidad</div>
+            </div>
+            <div class="org-box">
+              <div class="ob-title">Marketing</div>
+              <div class="ob-name">Community Manager</div>
+            </div>
+            <div class="org-box">
+              <div class="ob-title">Ventas</div>
+              <div class="ob-name">Asesor de Ventas</div>
+            </div>
+          </div>
+
+          <p class="org-note">Coloca <strong>organigrama.png</strong> en la carpeta para reemplazar este diagrama con tu imagen oficial.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /inner-page -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand-logo">
+          <img src="logo.png" alt="BeeSkin Glow" onerror="this.style.display='none'; document.getElementById('f-fb').style.display='block'"/>
+          <div class="logo-fallback" id="f-fb" style="display:none;font-size:1.4rem"><em>Bee</em>Skin<span style="font-size:.5rem;letter-spacing:5px;color:var(--gold)">GLOW</span></div>
+        </div>
+        <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">🎵</a><a href="#">💬</a></div>
+      </div>
+      <div class="footer-col"><h4>Empresa</h4><a href="sobre-nosotros.html">Sobre Nosotros</a><a href="valores.html">Valores Corporativos</a><a href="equipo.html">Equipo BeeSkin</a><a href="dofa.html">DOFA</a><a href="costos.html">Costos</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="privacidad.html">Política de Privacidad</a><a href="terminos.html">Términos y Condiciones</a></div>
+      <div class="footer-col"><h4>Contacto</h4><a href="mailto:hola@beeskinglow.com">hola@beeskinglow.com</a><a href="tel:+573000000000">+57 300 000 0000</a><span>Colombia 🇨🇴</span></div>
+    </div>
+    <div class="footer-bottom">© 2025 BeeSkin Glow. Todos los derechos reservados.</div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

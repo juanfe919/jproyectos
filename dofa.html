@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis DOFA — BeeSkin Glow</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="shared.css"/>
+  
+  <style>
+    /* ── PAGE INTRO (Mismos estilos de equipo.html) ── */
+    .page-intro { max-width: 860px; margin: 0 auto; padding: 64px 28px 0; }
+    .page-intro h1 { font-family: var(--font-display); font-size: clamp(2.2rem,5vw,3.4rem); color: var(--charcoal); line-height:1.1; }
+    .page-intro p  { font-size:15px; color:rgba(26,16,8,0.62); line-height:1.8; margin-top:16px; max-width:620px; }
+
+    /* ── SECTION LABEL ── */
+    .section-label { max-width: 860px; margin: 56px auto 0; padding: 0 28px; }
+    .section-label h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem,3.5vw,2.2rem);
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+
+    /* ── TABLAS DOFA ── */
+    .dofa-table-wrapper {
+      max-width: 860px; margin: 24px auto 0; padding: 0 28px;
+      overflow-x: auto;
+    }
+    .dofa-table {
+      width: 100%; border-collapse: collapse;
+      background: rgba(234,224,206,0.45);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius, 12px);
+      overflow: hidden;
+      text-align: left;
+    }
+    .dofa-table thead {
+      background: rgba(200,168,75,0.15);
+    }
+    .dofa-table th, .dofa-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--charcoal);
+      font-size: 15px;
+    }
+    .dofa-table th {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--amber);
+    }
+    .dofa-table tr:last-child td { border-bottom: none; }
+    .dofa-table td.center { text-align: center; }
+    
+    .mark-x {
+      display: inline-block;
+      color: var(--gold-dark);
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: rgba(200,168,75,0.15);
+      width: 28px; height: 28px;
+      line-height: 28px;
+      border-radius: 50%;
+      text-align: center;
+    }
+
+    /* ── TARJETAS DE DESCRIPCIÓN DOFA ── */
+    .dofa-grid {
+      max-width: 860px; margin: 24px auto 64px; padding: 0 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .dofa-card {
+      background: rgba(234,224,206,0.55);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius, 12px);
+      padding: 26px 22px 24px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .dofa-card:hover { 
+      transform: translateY(-4px); 
+      box-shadow: 0 8px 24px rgba(200,168,75,0.15); 
+    }
+    .dofa-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    }
+
+    /* Badges (Etiquetas) */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 11px;
+      border-radius: 60px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .5px; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    /* Estilo para aspectos positivos */
+    .badge-pos {
+      background: rgba(200,168,75,0.13);
+      border: 1px solid rgba(200,168,75,0.3);
+      color: var(--amber);
+    }
+    /* Estilo para aspectos a mejorar/amenazas */
+    .badge-neg {
+      background: rgba(26,16,8,0.06);
+      border: 1px solid rgba(26,16,8,0.15);
+      color: rgba(26,16,8,0.7);
+    }
+
+    .dofa-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem; color: var(--charcoal); margin-bottom: 10px; line-height:1.2;
+    }
+    .dofa-card p {
+      font-size: 14px; color: rgba(26,16,8,0.7); line-height: 1.6; margin:0;
+    }
+    
+    @media (max-width: 600px) {
+      .dofa-grid { grid-template-columns: 1fr; }
+      .dofa-table th, .dofa-table td { padding: 12px 10px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bee-container" id="bee" style="transform:translate(200px,200px)">
+    <svg class="bee-svg" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="18" cy="12" rx="14" ry="7" fill="rgba(255,255,255,0.55)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="18" cy="26" rx="11" ry="5.5" fill="rgba(255,255,255,0.42)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="36" cy="20" rx="16" ry="9" fill="#1a1008"/>
+      <rect x="28" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <rect x="35" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <circle cx="51" cy="20" r="7" fill="#1a1008"/>
+      <circle cx="53" cy="18" r="1.8" fill="#d4a017"/>
+      <path d="M20 20 L14 20" stroke="#1a1008" stroke-width="2" stroke-linecap="round"/>
+      <path d="M49 14 Q52 8 56 6" stroke="#1a1008" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <circle cx="56" cy="6" r="1.5" fill="#d4a017"/>
+    </svg>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="logo.png" alt="BeeSkin Glow" onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='block'"/>
+        <div class="logo-fallback" id="logo-fb" style="display:none"><em>Bee</em>Skin Glow<span>GLOW</span></div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Inicio</a>
+      <a href="producto.html">Producto</a>
+      <a href="sobre-nosotros.html">Sobre Nosotros</a>
+      <a href="valores.html">Valores</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="dofa.html">DOFA</a>
+      <a href="costos.html">Costos</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="terminos.html">Términos</a>
+    </nav>
+  </header>
+
+  <div class="inner-page">
+
+    <div class="page-intro">
+      <h1 class="reveal">Análisis <em style="color:var(--gold-dark);font-style:italic">DOFA</em></h1>
+      <div class="gold-line reveal" style="transition-delay:.08s"></div>
+      <p class="reveal" style="transition-delay:.12s">Conoce nuestras fortalezas, oportunidades, debilidades y amenazas para entender nuestro entorno y estrategias de crecimiento.</p>
+    </div>
+
+    <div class="section-label reveal" style="transition-delay:.16s">
+      <h2>Análisis Interno</h2>
+    </div>
+
+    <div class="dofa-table-wrapper reveal" style="transition-delay:.20s">
+      <table class="dofa-table">
+        <thead>
+          <tr>
+            <th>Factores</th>
+            <th class="center">Fortalezas</th>
+            <th class="center">Debilidades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Económico</td>
+            <td class="center"></td>
+            <td class="center"><span class="mark-x">X</span></td>
+          </tr>
+          <tr>
+            <td>Precio</td>
+            <td class="center"><span class="mark-x">X</span></td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Calidad</td>
+            <td class="center"><span class="mark-x">X</span></td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Empleados</td>
+            <td class="center"><span class="mark-x">X</span></td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Infraestructura</td>
+            <td class="center"></td>
+            <td class="center"><span class="mark-x">X</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="dofa-grid">
+      <div class="dofa-card reveal" style="transition-delay:.24s">
+        <div class="badge badge-neg">📉 Debilidad</div>
+        <h3>Económico</h3>
+        <p>La empresa puede tener poco capital al inicio.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.26s">
+        <div class="badge badge-pos">⭐ Fortaleza</div>
+        <h3>Precio</h3>
+        <p>Ofrece precios asequibles y similares a los del mercado de productos naturales.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.28s">
+        <div class="badge badge-pos">⭐ Fortaleza</div>
+        <h3>Calidad</h3>
+        <p>Los productos son naturales y benefician la piel.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.30s">
+        <div class="badge badge-pos">⭐ Fortaleza</div>
+        <h3>Empleados</h3>
+        <p>El trabajo en equipo mejora la producción.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.32s">
+        <div class="badge badge-neg">📉 Debilidad</div>
+        <h3>Infraestructura</h3>
+        <p>Puede haber pocos recursos o espacio para producir.</p>
+      </div>
+    </div>
+
+
+    <div class="section-label reveal">
+      <h2>Análisis Externo</h2>
+    </div>
+
+    <div class="dofa-table-wrapper reveal" style="transition-delay:.1s">
+      <table class="dofa-table">
+        <thead>
+          <tr>
+            <th>Factores</th>
+            <th class="center">Oportunidad</th>
+            <th class="center">Amenaza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Económico</td>
+            <td class="center"></td>
+            <td class="center"><span class="mark-x">X</span></td>
+          </tr>
+          <tr>
+            <td>Competencia</td>
+            <td class="center"></td>
+            <td class="center"><span class="mark-x">X</span></td>
+          </tr>
+          <tr>
+            <td>Proveedores</td>
+            <td class="center"><span class="mark-x">X</span></td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Clientes</td>
+            <td class="center"><span class="mark-x">X</span></td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Socio Cultura</td>
+            <td class="center"></td>
+            <td class="center"><span class="mark-x">X</span></td>
+          </tr>
+          <tr>
+            <td>Tecnología</td>
+            <td class="center"><span class="mark-x">X</span></td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Ambiental</td>
+            <td class="center"><span class="mark-x">X</span></td>
+            <td class="center"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="dofa-grid">
+      <div class="dofa-card reveal" style="transition-delay:.15s">
+        <div class="badge badge-neg">⚠️ Amenaza</div>
+        <h3>Económico</h3>
+        <p>Los costos de producción pueden aumentar y afectar las ventas.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.18s">
+        <div class="badge badge-neg">⚠️ Amenaza</div>
+        <h3>Competencia</h3>
+        <p>Existen muchas marcas de cosméticos en el mercado.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.21s">
+        <div class="badge badge-pos">🌱 Oportunidad</div>
+        <h3>Proveedores</h3>
+        <p>Permiten obtener cera de abeja natural para los productos.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.24s">
+        <div class="badge badge-pos">🌱 Oportunidad</div>
+        <h3>Clientes</h3>
+        <p>Cada vez más personas prefieren productos naturales.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.27s">
+        <div class="badge badge-neg">⚠️ Amenaza</div>
+        <h3>Sociocultural</h3>
+        <p>Algunas personas prefieren marcas más reconocidas.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.30s">
+        <div class="badge badge-pos">🌱 Oportunidad</div>
+        <h3>Tecnología</h3>
+        <p>Ayuda a promocionar los productos en internet y redes sociales.</p>
+      </div>
+
+      <div class="dofa-card reveal" style="transition-delay:.33s">
+        <div class="badge badge-pos">🌱 Oportunidad</div>
+        <h3>Ambiental</h3>
+        <p>Las personas buscan productos ecológicos y naturales.</p>
+      </div>
+    </div>
+
+  </div><footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand-logo">
+          <img src="logo.png" alt="BeeSkin Glow" onerror="this.style.display='none'; document.getElementById('f-fb').style.display='block'"/>
+          <div class="logo-fallback" id="f-fb" style="display:none;font-size:1.4rem"><em>Bee</em>Skin<span style="font-size:.5rem;letter-spacing:5px;color:var(--gold)">GLOW</span></div>
+        </div>
+        <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">🎵</a><a href="#">💬</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="valores.html">Valores Corporativos</a>
+        <a href="equipo.html">Equipo BeeSkin</a>
+        <a href="dofa.html">DOFA</a>
+        <a href="costos.html">Costos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacidad.html">Política de Privacidad</a>
+        <a href="terminos.html">Términos y Condiciones</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:hola@beeskinglow.com">hola@beeskinglow.com</a>
+        <a href="tel:+573000000000">+57 300 000 0000</a>
+        <span>Colombia 🇨🇴</span>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 BeeSkin Glow. Todos los derechos reservados.</div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

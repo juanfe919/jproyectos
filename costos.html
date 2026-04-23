@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Análisis de Costos — BeeSkin Glow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .page-intro { max-width: 900px; margin: 0 auto; padding: 64px 28px 0; }
+    .page-intro h1 { font-family: var(--font-display); font-size: clamp(2.2rem,5vw,3.4rem); color: var(--charcoal); }
+    
+    .section-label { max-width: 900px; margin: 56px auto 0; padding: 0 28px; }
+    .section-label h2 { font-family: var(--font-display); color: var(--charcoal); font-size: 1.8rem; }
+
+    /* Estilos de Tabla de Finanzas */
+    .table-container { max-width: 900px; margin: 24px auto 40px; padding: 0 28px; overflow-x: auto; }
+    .finance-table { 
+      width: 100%; border-collapse: collapse; background: rgba(234,224,206,0.45); 
+      border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; 
+    }
+    .finance-table thead { background: rgba(200,168,75,0.15); }
+    .finance-table th, .finance-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--glass-border); font-size: 13px; color: var(--charcoal); }
+    .finance-table th { font-family: var(--font-display); color: var(--amber); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 11px; }
+    
+    .total-row { background: rgba(200,168,75,0.1); font-weight: 700; color: var(--amber) !important; }
+    .cost-val { font-weight: 600; color: var(--gold-dark); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <div class="logo-fallback"><em>Bee</em>Skin Glow<span>GLOW</span></div>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Inicio</a>
+      <a href="producto.html">Producto</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="dofa.html">DOFA</a>
+      <a href="costos.html">Costos</a>
+    </nav>
+  </header>
+
+  <div class="inner-page">
+    <div class="page-intro">
+      <h1 class="reveal">Estructura <em style="color:var(--gold-dark);font-style:italic">Financiera</em></h1>
+      <div class="gold-line reveal"></div>
+      <p class="reveal">Desglose completo de la inversión operativa, mano de obra y costos de producción para BeeSkin Glow.</p>
+    </div>
+
+    <div class="section-label reveal">
+      <h2>Costeo de Mano de Obra</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Cargo</th>
+            <th>Sueldo Básico</th>
+            <th>Cant.</th>
+            <th>Sub-total</th>
+            <th>Factor (53%)</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Directora General</td><td>$ 2.800.000</td><td>1</td><td>$ 2.800.000</td><td>$ 1.484.000</td><td class="cost-val">$ 4.284.000</td></tr>
+          <tr><td>Directora de Producción</td><td>$ 2.500.000</td><td>1</td><td>$ 2.500.000</td><td>$ 1.325.000</td><td class="cost-val">$ 3.825.000</td></tr>
+          <tr><td>Directora Comercial</td><td>$ 2.300.000</td><td>1</td><td>$ 2.300.000</td><td>$ 1.219.000</td><td class="cost-val">$ 3.519.000</td></tr>
+          <tr><td>Encargado de Compras</td><td>$ 1.850.000</td><td>1</td><td>$ 1.850.000</td><td>$ 980.500</td><td class="cost-val">$ 2.830.500</td></tr>
+          <tr><td>Operario de Producción</td><td>$ 1.900.000</td><td>1</td><td>$ 1.900.000</td><td>$ 1.007.000</td><td class="cost-val">$ 2.907.000</td></tr>
+          <tr><td>Auxiliar de Producción</td><td>$ 1.750.000</td><td>1</td><td>$ 1.750.000</td><td>$ 927.500</td><td class="cost-val">$ 2.677.500</td></tr>
+          <tr><td>Técnico de Control de Calidad</td><td>$ 2.000.000</td><td>1</td><td>$ 2.000.000</td><td>$ 1.060.000</td><td class="cost-val">$ 3.060.000</td></tr>
+          <tr><td>Community Manager</td><td>$ 1.800.000</td><td>1</td><td>$ 1.800.000</td><td>$ 954.000</td><td class="cost-val">$ 2.754.000</td></tr>
+          <tr><td>Asesor de Ventas</td><td>$ 1.750.000</td><td>1</td><td>$ 1.750.000</td><td>$ 927.500</td><td class="cost-val">$ 2.677.500</td></tr>
+          <tr><td>Contador</td><td>$ 1.000.000</td><td>1</td><td>$ 1.000.000</td><td>$ 530.000</td><td class="cost-val">$ 1.530.000</td></tr>
+          <tr class="total-row">
+            <td colspan="5" style="text-align:right">TOTAL NÓMINA:</td>
+            <td>$ 30.064.500</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-label reveal">
+      <h2>Muebles y Enseres</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Ítem</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Valor Unitario</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Escritorio</td><td>7</td><td>$ 400.000</td><td>$ 2.800.000</td></tr>
+          <tr><td>2</td><td>Silla</td><td>15</td><td>$ 89.000</td><td>$ 1.335.000</td></tr>
+          <tr><td>3</td><td>Archivador</td><td>4</td><td>$ 430.000</td><td>$ 1.720.000</td></tr>
+          <tr><td>4</td><td>Estantería</td><td>3</td><td>$ 150.000</td><td>$ 450.000</td></tr>
+          <tr><td>5</td><td>Mesa de trabajo</td><td>2</td><td>$ 430.000</td><td>$ 860.000</td></tr>
+          <tr><td>6</td><td>Basurero doble</td><td>3</td><td>$ 150.000</td><td>$ 450.000</td></tr>
+          <tr><td>7</td><td>Papelería</td><td>1</td><td>$ 200.000</td><td>$ 200.000</td></tr>
+          
+          <tr class="total-row">
+            <td colspan="4" style="text-align:right">TOTAL:</td>
+            <td>$ 7.815.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-label reveal">
+      <h2>Otros Activos Fijos</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Valor Unitario</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Software Office</td><td>1</td><td>$ 239.000</td><td>$ 239.000</td></tr>
+          <tr><td>Servicios Públicos</td><td>1</td><td>$ 1.000.000</td><td>$ 1.000.000</td></tr>
+          <tr class="total-row">
+            <td colspan="3" style="text-align:right">TOTAL:</td>
+            <td>$ 1.239.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+     <div class="section-label reveal">
+      <h2>Equipo de Cómputo</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Valor Unitario</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Computador Escritorio</td><td>3</td><td>$ 2.000.000</td><td>$ 6.000.000</td></tr>
+          <tr><td>Computador Portátil</td><td>3</td><td>$ 1.700.000</td><td>$ 5.100.000</td></tr>
+          <tr><td>Impresora</td><td>2</td><td>$ 550.000</td><td>$ 1.100.000</td></tr>
+          <tr class="total-row">
+            <td colspan="3" style="text-align:right">TOTAL:</td>
+            <td>$ 12.200.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+     <div class="section-label reveal">
+      <h2>Equipo de Producción y Laboratorio</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Valor Unitario</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>batidora industrial</td><td>1</td><td>$ 2.500.000</td><td>$ 2.500.000</td></tr>
+          <tr><td>Balanza Digital</td><td>3</td><td>$ 59.000</td><td>$ 177.000</td></tr>
+          <tr><td>Termómetro</td><td>3</td><td>$ 100.000</td><td>$ 300.000</td></tr>
+          <tr><td>pH metro</td><td>1</td><td>$ 100.000</td><td>$ 100.000</td></tr>
+          <tr><td>Recipientes acero</td><td>5</td><td>$ 30.000</td><td>$ 150.000</td></tr>
+          <tr><td>Kit laboratorio</td><td>2</td><td>$ 835.000</td><td>$ 1.670.000</td></tr>
+          <tr class="total-row">
+            <td colspan="3" style="text-align:right">TOTAL:</td>
+            <td>$ 4.897.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+     <div class="section-label reveal">
+      <h2>Insumos</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Valor Unitario</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Materias primas</td><td>1</td><td>$ 2.500.000</td><td>$ 2.500.000</t  d></tr>
+          <tr><td>Envases y empaques</td><td>100</td><td>$ 2.000</td><td>$ 200.000</td></tr>
+
+          <tr class="total-row">
+            <td colspan="3" style="text-align:right">TOTAL:</td>
+            <td>$ 12.200.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ 
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            
+          </tr>
+        </thead>
+        <tbody>
+         
+
+          <tr class="total1-row">
+            <td colspan="1" style="text-align:right">TOTAL INVERSIÓN:</td>
+            <td>$ 28.851.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+     <div class="section-label reveal">
+      <h2>Gastos fijos administrativos</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Valor mes</th>
+            <th>Valor año</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Arriendo</td><td>$ 4.000.000</td><td>$ 48.000.000</t  d></tr>
+          <tr><td>Agua y energía</td><td>$ 180.000</td><td>$ 2.160.000</td></tr>
+          <tr><td>Internet</td><td>$ 100.000</td><td>$ 1.200.000</td></tr>
+          <tr><td>Celular</td><td>$ 50.000</td><td>$ 600.000</td></tr>
+          <tr><td>Cuota bancaria</td><td>$ 786.370</td><td>$ 9.436.000</td></tr>
+          <tr><td>Seguros</td><td>$ 100.000</td><td>$ 1.200.000</td></tr>
+          <tr><td>Mantenimiento (equipos/lab)</td><td>$ 200.000</td><td>$ 2.400.000</td></tr>
+
+          <tr class="total-row">
+            <td colspan="1" style="text-align:right">TOTAL:</td>
+            <td>$ 5.416.370</td>
+            <td>$ 64.996.440</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<img src="comprobante.png" alt="Comprobante credito" class="comprobante-glow">
+
+     <div class="section-label reveal">
+      <h2>COSTO POR UNIDAD</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Cantidad</th>
+            <th>Unidad de medida</th>
+            <th>Valor Unitario</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Cera de abeja</td><td>12.5<td>Gramos</td></td><td>$ 183</td><td>$ 2.288</td></tr>
+          <tr><td>Aceite de almendras</td><td>18.75</td><td>Mililitros</td><td>$ 184</td><td>$ 3.450</td></tr>
+          <tr><td>Aceite de coco</td><td>12.5</td><td>Mililitros</td><td>$ 135</td><td>$ 1.688</td></tr>
+          <tr><td>Agua destilada</td><td>50</td><td>Mililitros</td><td>$ 4</td><td>$ 200</td></tr>
+          <tr><td>Glicerina</td><td>6.25</td><td>Mililitros</td><td>$ 90</td><td>$ 563</td></tr>
+          <tr><td>Aloe vera</td><td>12.5</td><td>Mililitros</td><td>$ 112</td><td>$ 1.400</td></tr>
+          <tr><td>Emulsionante (cera emulsificante)</td><td>6.25</td><td>Gramos</td><td>$ 270</td><td>$ 1.688</td></tr>
+          <tr><td>Vitamina E</td><td>1.25</td><td>Mililitros</td><td>$ 720</td><td>$ 900</td></tr>
+          <tr><td>Conservante cosmético</td><td>1.25</td><td>Mililitros</td><td>$ 640</td><td>$ 800</td></tr>
+          <tr><td>Fragancia/aceite esencial</td><td>2.5</td><td>Mililitros</td><td>$ 920</td><td>$ 2.300</td></tr>
+          <tr><td>Regulador de pH (ácido cítrico)</td><td>12.5</td><td>Mililitros</td><td>$ 280</td><td>$ 350</td></tr>
+          <tr><td>Envase</td><td>1</td><td>Unidad</td><td></td><td>$ 2.000</td></tr>
+          <tr><td>Etiqueta</td><td>1</td><td>Unidad</td><td></td><td>$ 1.000</td></tr>
+          <tr class="total-row">
+            <td colspan="1" style="text-align:left">TOTAL:</td>
+            <td colspan="4" style="text-align:right">$ 4.897.000</td>
+          </tr>
+
+         <tr class="total-row">
+            <td colspan="4" style="text-align:right">Utilidad 60%:</td>
+            <td>$ 11.175</td>
+          </tr>
+         <tr class="total-row">
+            <td colspan="4" style="text-align:right">Valor de venta:</td>
+            <td>$ 29.800</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+     <div class="section-label reveal">
+      <h2>PUNTO DE EQUILIBRIO</h2>
+    </div>
+    <div class="table-container reveal">
+      <table class="finance-table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ventas</td><td>$ 14.443.653</t  d></tr>
+          <tr><td>Gastos administrativos</td><td>$ 5.416.370</td></tr>
+          <tr><td>Mano de obra (nómina)</td><td>$ 30.064.500</td></tr>
+          <tr><td>Costo variable</td><td>$ 18.625</td></tr>
+          <tr><td>Precio de venta</td><td>$ 29.800</td></tr>
+          <tr><td>Utilidad antes de impuestos</td><td>$ 0</td></tr>
+          <tr><td>reserva legal 10%</td><td>$ 0</td></tr>
+           <tr><td>Impuesto de renta 33%</td><td>$ 0</td></tr>
+            <tr><td>Utilidad neta</td><td>$ 0</td></tr>
+
+          <tr class="total-row">
+            <td colspan="1" style="text-align:right">Punto de Equilibrio:</td>
+            <td>$ 14.443.653</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="1" style="text-align:right">Unidades:</td>
+            <td> 485</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </div><footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand-logo">
+          <img src="logo.png" alt="BeeSkin Glow" onerror="this.style.display='none'; document.getElementById('f-fb').style.display='block'"/>
+          <div class="logo-fallback" id="f-fb" style="display:none;font-size:1.4rem"><em>Bee</em>Skin<span style="font-size:.5rem;letter-spacing:5px;color:var(--gold)">GLOW</span></div>
+        </div>
+        <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">🎵</a><a href="#">💬</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="valores.html">Valores Corporativos</a>
+        <a href="equipo.html">Equipo BeeSkin</a>
+        <a href="dofa.html">DOFA</a>
+        <a href="costos.html">Costos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacidad.html">Política de Privacidad</a>
+        <a href="terminos.html">Términos y Condiciones</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:hola@beeskinglow.com">hola@beeskinglow.com</a>
+        <a href="tel:+573000000000">+57 300 000 0000</a>
+        <span>Colombia 🇨🇴</span>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 BeeSkin Glow. Todos los derechos reservados.</div>
+  </footer>
+
+  <script src="shared.js"></script>
+
+</body>
+</html>
