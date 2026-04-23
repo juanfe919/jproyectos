@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valores Corporativos — BeeSkin Glow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .value-card {
+      display:flex; align-items:flex-start; gap:18px;
+      padding:28px 24px; margin-bottom:18px;
+      background:rgba(234,224,206,0.5);
+      border:1px solid var(--glass-border);
+      border-radius:var(--radius);
+      transition:transform var(--transition), box-shadow var(--transition);
+    }
+    .value-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-gold); }
+    .value-icon { font-size:34px; flex-shrink:0; line-height:1; }
+    .value-card h3 { font-family:var(--font-display); font-size:1.25rem; color:var(--charcoal); margin-bottom:6px; }
+    .value-card p  { font-size:14px; color:rgba(26,16,8,0.62); line-height:1.75; margin:0; }
+  </style>
+</head>
+<body>
+  <div class="bee-container" id="bee" style="transform:translate(200px,200px)">
+    <svg class="bee-svg" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="18" cy="12" rx="14" ry="7" fill="rgba(255,255,255,0.55)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="18" cy="26" rx="11" ry="5.5" fill="rgba(255,255,255,0.42)" stroke="#c8a84b" stroke-width="0.8"/>
+      <ellipse cx="36" cy="20" rx="16" ry="9" fill="#1a1008"/>
+      <rect x="28" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <rect x="35" y="12" width="5" height="16" rx="2.5" fill="#d4a017" opacity="0.9"/>
+      <circle cx="51" cy="20" r="7" fill="#1a1008"/>
+      <circle cx="53" cy="18" r="1.8" fill="#d4a017"/>
+      <path d="M20 20 L14 20" stroke="#1a1008" stroke-width="2" stroke-linecap="round"/>
+      <path d="M49 14 Q52 8 56 6" stroke="#1a1008" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <circle cx="56" cy="6" r="1.5" fill="#d4a017"/>
+    </svg>
+  </div>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="logo.png" alt="BeeSkin Glow" onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='block'"/>
+        <div class="logo-fallback" id="logo-fb" style="display:none"><em>Bee</em>Skin Glow<span>GLOW</span></div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Inicio</a><a href="producto.html">Producto</a>
+      <a href="sobre-nosotros.html">Sobre Nosotros</a><a href="valores.html">Valores</a>
+      <a href="equipo.html">Equipo beeskin</a><a href="dofa.html">DOFA</a><a href="costos.html">Costos</a>
+      <a href="privacidad.html">Privacidad</a><a href="terminos.html">Términos</a>
+      
+    </nav>
+  </header>
+
+  <div class="inner-page">
+    <div class="inner-content">
+      <h1 class="reveal">Valores Corporativos</h1>
+      <div class="gold-line reveal" style="transition-delay:.08s"></div>
+
+      <div class="value-card reveal" style="transition-delay:.12s">
+        <div class="value-icon">🌿</div>
+        <div><h3>Respeto</h3><p>En BeeSkin Glow promovemos el respeto por la naturaleza y por las abejas, reconociendo su importancia en el equilibrio del ecosistema y en la elaboración de sus productos. La empresa procura desarrollar sus procesos de manera responsable con el medio ambiente y con cada recurso natural utilizado. De la misma manera, respeta a sus clientes ofreciendo productos seguros y elaborados con dedicación.</p></div>
+      </div>
+      <div class="value-card reveal" style="transition-delay:.17s">
+        <div class="value-icon">🐝</div>
+        <div><h3>Bienestar</h3><p>Nuestro objetivo es contribuir al bienestar de las personas mediante productos que nutran, hidraten y protejan la piel. Creemos que el cuidado personal debe ir de la mano con la salud de la piel, brindando una experiencia natural que ayude a las personas a sentirse bien y seguras.</p></div>
+      </div>
+      <div class="value-card reveal" style="transition-delay:.22s">
+        <div class="value-icon">✨</div>
+        <div><h3>Honestidad</h3><p>Actuamos con transparencia en cada paso de nuestro proceso. En BeeSkin Glow somos claros con los ingredientes que utilizamos y con la calidad de nuestros productos, generando confianza en nuestros clientes y manteniendo siempre la integridad de nuestra marca.</p></div>
+      </div>
+      <div class="value-card reveal" style="transition-delay:.27s">
+        <div class="value-icon">💙</div>
+        <div><h3>Compromiso</h3><p>Estamos comprometidos con la calidad de nuestros productos, el cuidado de la piel de nuestros clientes y la protección de la naturaleza. Trabajamos para ofrecer cosméticos naturales que realmente aporten beneficios.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand-logo">
+          <img src="logo.png" alt="BeeSkin Glow" onerror="this.style.display='none'; document.getElementById('f-fb').style.display='block'"/>
+          <div class="logo-fallback" id="f-fb" style="display:none;font-size:1.4rem"><em>Bee</em>Skin<span style="font-size:.5rem;letter-spacing:5px;color:var(--gold)">GLOW</span></div>
+        </div>
+        <div class="footer-social"><a href="#">📸</a><a href="#">📘</a><a href="#">🎵</a><a href="#">💬</a></div>
+      </div>
+      <div class="footer-col"><h4>Empresa</h4><a href="sobre-nosotros.html">Sobre Nosotros</a><a href="valores.html">Valores Corporativos</a><a href="equipo.html">Equipo beeskin</a><a href="dofa.html">DOFA</a><a href="costos.html">Costos</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="privacidad.html">Política de Privacidad</a><a href="terminos.html">Términos y Condiciones</a></div>
+      <div class="footer-col"><h4>Contacto</h4><a href="mailto:hola@beeskinglow.com">informacion@beeskinglow.com</a><a href="tel:+573000000000">+57 300 000 0000</a><span>Colombia 🇨🇴</span></div>
+    </div>
+    <div class="footer-bottom">© 2026 BeeSkin Glow. Todos los derechos reservados.</div>
+  </footer>
+  <script src="shared.js"></script>
+</body>
+</html>
