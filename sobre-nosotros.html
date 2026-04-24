@@ -7,7 +7,66 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="shared.css"/>
+  <style>
+.hero-3 {
+      position: relative;
+      width: 100%;
+      height: auto; /* La caja ahora se adapta a la imagen, no al revés */
+      background: var(--cream);
+      overflow: hidden;
+      display: flex;
+    }
+
+    .hero-3 img.hero-img {
+      position: relative; 
+      width: 100%;
+      height: auto; /* Muestra la imagen completa de pies a cabeza */
+      object-fit: contain; /* Garantiza que no se mutile nada */
+      display: block;
+    }
+
+    /* Placeholder shown when image missing */
+    .hero-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #f2e8d5 0%, #e8d4a8 50%, #d4b878 100%);
+    }
+    .hero-placeholder-inner {
+      text-align: center;
+      opacity: 0.45;
+    }
+    .hero-placeholder-inner .ph-bee { font-size: 80px; display: block; }
+    .hero-placeholder-inner p {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--amber);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    /* ---- RESPONSIVE ---- */
+      @media (max-width: 768px) {
+
+      .hero-3 {
+        height: auto;
+        min-height: 0;
+       
+      }           
+      
+      .hero-3 img.hero-img {
+        position: relative; 
+        height: auto;
+        object-fit: contain; 
+      }
+      
+      .hero-placeholder { position: relative; min-height: 200px; }
+    }
+  </style>
 </head>
+
 <body>
   <div class="bee-container" id="bee" style="transform:translate(200px,200px)">
     <svg class="bee-svg" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,9 +95,9 @@
       <a href="producto.html">Producto</a>
       <a href="sobre-nosotros.html">Sobre Nosotros</a>
       <a href="valores.html">Valores</a>
-      <a href="equipo.html">Trabaja con Nosotros</a>
-      <a href="dofa.html">Trabaja con Nosotros</a>
-      <a href="costos.html">Trabaja con Nosotros</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="dofa.html">DOFA</a>
+      <a href="costos.html">Costos</a>
       <a href="privacidad.html">Privacidad</a>
       <a href="terminos.html">Términos</a>
       
@@ -57,7 +116,23 @@
       <p class="reveal" style="transition-delay:.27s">Para el año 2031, BeeSkin Glow espera consolidarse como una empresa reconocida en el Eje Cafetero por la calidad de sus productos cosméticos elaborados a base de cera de abeja.</p>
     </div>
   </div>
+<section class="hero-3" aria-label="Portada principal">
+    <img 
+      class="hero-img"
+      src="portada3.png"
+      alt="BeeSkin Glow"
+      onerror="this.style.display='none'; document.getElementById('hero1-ph').style.display='flex'"
+    />
+    
+    <div id="brand-shimmer" class="company-name">Nuestra empresa</div>
 
+    <div class="hero-placeholder" id="hero1-ph" style="display:none">
+        <div class="hero-placeholder-inner">
+            <span class="ph-bee">🐝</span>
+            <p>portada3.png</p>
+        </div>
+    </div>
+  </section>
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col">
